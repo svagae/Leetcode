@@ -1,1 +1,31 @@
+import java.util.Arrays;
+
+class Solution {
+    public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums); // Sort the array to use two pointers
+        int closestSum = nums[0] + nums[1] + nums[2]; // Initialize with the first 3 elements
+
+        for (int i = 0; i < nums.length - 2; i++) {
+            int left = i + 1;               // Start pointer
+            int right = nums.length - 1;    // End pointer
+
+            while (left < right) {
+                int currentSum = nums[i] + nums[left] + nums[right];
+
+                // If this sum is closer to target than previous, update it
+                if (Math.abs(currentSum - target) < Math.abs(closestSum - target)) {
+                    closestSum = currentSum;
+                }
+
+                if (currentSum < target) {
+                    left++;  // We need a larger sum
+                } else {
+                    right--; // We need a smaller sum
+                }
+            }
+        }
+
+        return closestSum;
+    }
+}
 
