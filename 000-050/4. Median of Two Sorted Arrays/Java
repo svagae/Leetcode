@@ -1,1 +1,47 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        
+        if (nums1.length > nums2.length) {
+            int[] temp = nums1;
+            nums1 = nums2;
+            nums2 = temp;
+        }
+
+        int m = nums1.length;
+        int n = nums2.length;
+        int low = 0;
+        int high = m;
+
+        while (low <= high) {
+            
+            int p1 = (low + high) / 2;
+
+            int p2 = (m + n + 1) / 2 - p1;
+
+            // Find the maximum element on the left 
+            int maxLeft1 = (p1 == 0) ? Integer.MIN_VALUE : nums1[p1 - 1];
+            int maxLeft2 = (p2 == 0) ? Integer.MIN_VALUE : nums2[p2 - 1];
+            int maxLeft = Math.max(maxLeft1, maxLeft2);
+
+            // Find the minimum element on the right 
+            int minRight1 = (p1 == m) ? Integer.MAX_VALUE : nums1[p1];
+            int minRight2 = (p2 == n) ? Integer.MAX_VALUE : nums2[p2];
+            int minRight = Math.min(minRight1, minRight2);
+
+            if (maxLeft <= minRight) {
+                if ((m + n) % 2 == 0) {
+                    return (maxLeft + minRight) / 2.0;
+                } else {
+                    return maxLeft;
+                }
+            } else if (maxLeft1 > minRight2) {
+                high = p1 - 1;
+            } else {
+                low = p1 + 1;
+            }
+        }
+        throw new IllegalArgumentException("Input arrays are not sorted.");
+    }
+}
+
 
