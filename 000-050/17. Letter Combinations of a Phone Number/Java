@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Solution {
+    public List<String> letterCombinations(String digits) {
+        // If the input is empty, return an empty list
+        if (digits == null || digits.length() == 0) {
+            return new ArrayList<>();
+        }
+        
+        // Map to associate digits with corresponding letters
+        Map<Character, String> phoneMap = new HashMap<>();
+        phoneMap.put('2', "abc");
+        phoneMap.put('3', "def");
+        phoneMap.put('4', "ghi");
+        phoneMap.put('5', "jkl");
+        phoneMap.put('6', "mno");
+        phoneMap.put('7', "pqrs");
+        phoneMap.put('8', "tuv");
+        phoneMap.put('9', "wxyz");
+        
+        // List to store the result combinations
+        List<String> result = new ArrayList<>();
+        
+        // Backtracking helper function
+        backtrack(digits, 0, new StringBuilder(), result, phoneMap);
+        
+        return result;
+    }
+
+    // Backtracking function to generate combinations
+    private void backtrack(String digits, int index, StringBuilder currentCombination, 
+                           List<String> result, Map<Character, String> phoneMap) {
+        // If the current combination is the same length as the digits, we found a valid combination
+        if (index == digits.length()) {
+            result.add(currentCombination.toString());
+            return;
+        }
+        
+        // Get the letters for the current digit
+        char digit = digits.charAt(index);
+        String letters = phoneMap.get(digit);
+        
+        // Try each letter and explore the next digit
+        for (int i = 0; i < letters.length(); i++) {
+            currentCombination.append(letters.charAt(i));  // Choose the letter
+            backtrack(digits, index + 1, currentCombination, result, phoneMap);  // Explore further
+            currentCombination.deleteCharAt(currentCombination.length() - 1);  // Undo the choice (backtrack)
+        }
+    }
+}
