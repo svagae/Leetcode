@@ -1,0 +1,38 @@
+public int majorityElement(int[] nums) {
+    Map<Integer, Integer> countMap = new HashMap<>();
+    int n = nums.length;
+
+    for (int num : nums) {
+        countMap.put(num, countMap.getOrDefault(num, 0) + 1);
+    }
+
+    for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+        if (entry.getValue() > n / 2) {
+            return entry.getKey();
+        }
+    }
+
+   
+    return -1;
+}
+
+////////////////////////////////Another Way///////////////////////////////////////
+public int majorityElement(int[] nums) {
+    int count = 0;
+    int candidate = 0;
+
+    for (int num : nums) {
+        if (count == 0) {
+            candidate = num;  // Choose a new candidate
+        }
+
+        if (num == candidate) {
+            count++;         // Same as candidate → increase count
+        } else {
+            count--;         // Different from candidate → decrease count
+        }
+    }
+
+    return candidate;
+}
+
