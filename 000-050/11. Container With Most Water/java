@@ -1,0 +1,13 @@
+class Solution {
+    public int maxArea(int[] height) {
+        int maxArea = 0;
+        for (int i = 0; i < height.length; i++) {
+            for (int j = i + 1; j < height.length; j++) {
+                int currentHeight = Math.min(height[i], height[j]);
+                int currentWidth = j - i;
+                maxArea = Math.max(maxArea, currentHeight * currentWidth);
+            }
+        }
+        return maxArea;
+    }
+}
