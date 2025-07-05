@@ -1,0 +1,68 @@
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+    
+
+        List<List<String>> result = new ArrayList<>();
+
+        // To track used columns and diagonals
+        Set<Integer> columns = new HashSet<>();
+        Set<Integer> diag1 = new HashSet<>(); // row - col
+        Set<Integer> diag2 = new HashSet<>(); // row + col
+
+        // We'll build the board as a char array
+        char[][] board = new char[n][n];
+        for (char[] row : board)
+            Arrays.fill(row, '.');
+
+        backtrack(0, board, columns, diag1, diag2, result);
+        return result;
+    }
+
+    private void backtrack(int row, char[][] board,
+                           Set<Integer> columns,
+                           Set<Integer> diag1,
+                           Set<Integer> diag2,
+                           List<List<String>> result) {
+
+        int n = board.length;
+
+        // Base case: All rows are filled
+        if (row == n) {
+            result.add(constructBoard(board));
+            return;
+        }
+
+        // Try placing queen in each column
+        for (int col = 0; col < n; col++) {
+            // Check if this col or diagonal is under threat
+            if (columns.contains(col) || diag1.contains(row - col) || diag2.contains(row + col))
+                continue;
+
+            // Place the queen
+            board[row][col] = 'Q';
+            columns.add(col);
+            diag1.add(row - col);
+            diag2.add(row + col);
+
+            // Recurse to next row
+            backtrack(row + 1, board, columns, diag1, diag2, result);
+
+            // Backtrack: remove the queen
+            board[row][col] = '.';
+            columns.remove(col);
+            diag1.remove(row - col);
+            diag2.remove(row + col);
+        }
+    }
+
+    // Helper to convert board to List<String>
+    private List<String> constructBoard(char[][] board) {
+        List<String> boardAsString = new ArrayList<>();
+        for (char[] row : board) {
+            boardAsString.add(new String(row));
+        }
+        return boardAsString;
+    }
+}
+   
+    
