@@ -1,0 +1,31 @@
+import java.util.*;
+
+public class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        // Swap to ensure nums1 is smaller (optional optimization)
+        if (nums1.length > nums2.length) {
+            return intersection(nums2, nums1);
+        }
+
+        Set<Integer> set = new HashSet<>();
+        for (int num : nums2) {
+            set.add(num);
+        }
+
+        Set<Integer> resultSet = new HashSet<>();
+        for (int num : nums1) {
+            if (set.contains(num)) {
+                resultSet.add(num);
+            }
+        }
+
+        // Convert resultSet to array
+        int[] result = new int[resultSet.size()];
+        int i = 0;
+        for (int num : resultSet) {
+            result[i++] = num;
+        }
+
+        return result;
+    }
+}
