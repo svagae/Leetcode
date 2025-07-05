@@ -1,0 +1,30 @@
+class Solution {
+    public String addBinary(String a, String b) {
+        StringBuilder result = new StringBuilder();
+        int i = a.length() - 1;
+        int j = b.length() - 1;
+        int carry = 0;
+
+        // Traverse both strings from the end
+        while (i >= 0 || j >= 0 || carry > 0) {
+            int sum = carry; // Start with the carry value
+            // Add the binary digit from string 'a'
+            if (i >= 0) {
+                sum += a.charAt(i) - '0'; // Convert character to integer
+                i--;
+            }
+            // Add the binary digit from string 'b'
+            if (j >= 0) {
+                sum += b.charAt(j) - '0'; // Convert character to integer
+                j--;
+            }
+            // Append the sum modulo 2 (binary digit)
+            result.append(sum % 2);
+            // Update the carry
+            carry = sum / 2;
+        }
+
+        // Reverse the result since we were appending digits from the least significant bit
+        return result.reverse().toString();
+    }
+}
