@@ -1,0 +1,18 @@
+import java.util.*;
+
+public class Solution {
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        backtrack(0, nums, new ArrayList<>(), result);
+        return result;
+    }
+
+    private void backtrack(int start, int[] nums, List<Integer> path, List<List<Integer>> result) {
+        result.add(new ArrayList<>(path));
+        for (int i = start; i < nums.length; i++) {
+            path.add(nums[i]);                   // choose
+            backtrack(i + 1, nums, path, result); // explore
+            path.remove(path.size() - 1);        // un-choose (backtrack)
+        }
+    }
+}
