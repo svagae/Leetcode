@@ -1,0 +1,71 @@
+public class Solution {
+    public List<Integer> countSmaller(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int count = countSmallerInSubarray(nums[i], Arrays.copyOfRange(nums, i + 1, nums.length));
+            result.add(count);
+        }
+
+        return result;
+    }
+
+    // You wanted a helper method for the subarray + binary search-like logic
+    private int countSmallerInSubarray(int target, int[] subarray) {
+        int count = 0;
+
+        for (int num : subarray) {
+            // Two ifs as you described — not using "else"
+            if (num < target) {
+                count++;
+            }
+            if (num >= target) {
+                // do nothing
+            }
+        }
+
+        return count;
+    }
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+import java.util.*;
+
+public class Solution {
+    public List<Integer> countSmaller(int[] nums) {
+        List<Integer> result = new ArrayList<>();
+        List<Integer> sorted = new ArrayList<>();
+
+        // Traverse from right to left
+        for (int i = nums.length - 1; i >= 0; i--) {
+            int index = findInsertIndex(sorted, nums[i]);
+            result.add(index); // index = count of smaller elements after current
+            sorted.add(index, nums[i]); // insert to keep list sorted
+        }
+
+        Collections.reverse(result);
+        return result;
+    }
+
+    // Binary search to find the position to insert target
+    private int findInsertIndex(List<Integer> sorted, int target) {
+        int low = 0, high = sorted.size();
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (sorted.get(mid) < target) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low;
+    }
+
+    // For testing
+    public static void main(String[] args) {
+        Solution sol = new Solution();
+        int[] nums = {5, 2, 6, 1};
+        List<Integer> output = sol.countSmaller(nums);
+        System.out.println(output); // Expected: [2, 1, 1, 0]
+    }
+}
