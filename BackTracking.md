@@ -106,4 +106,4 @@ By following this pattern and using these optimizations, backtracking solutions 
 
 Overall, backtracking for combination problems is about **systematic exploration**: at each step, choose a candidate, recurse, and undo.  The combination-sum example shows the pattern vividly: choose numbers that reduce the remaining target, stop when you hit zero, and cut off branches that exceed the target.  With careful base-case checks and pruning, this brute-force search is made practicable and clear to implement for contest and interview problems.
 
-**References:** Key points above are drawn from algorithmic tutorials on backtracking and from in-depth explanations of the Combination Sum pattern. These sources highlight the recursion structure, base cases, and pruning strategies that make backtracking work efficiently.
+**References:** Key points above are drawn from algorithmic tutorials on backtracking and from in-depth explanations of the Combination Sum pattern. These sources highlight the recursion structure, base cases, and pruning strategies that make backtracking work efficiently
