@@ -8,12 +8,12 @@
 | ----------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | `length()`                                | Returns the length of this string.                                                                      |
 | `charAt(int index)`                       | Returns the `char` value at the specified index.                                                        |
-| `substring(int beginIndex)`               | Returns a substring of this string from the specified index to the end.                                 |
+| `substring(int beginIndex)`               | Returns a substring of this string from the specified index to the end                                  |
 | `substring(int beginIndex, int endIndex)` | Returns a substring of this string between the specified start (inclusive) and end (exclusive) indices. |
 | `contains(CharSequence s)`                | Returns true if this string contains the specified sequence of characters.                              |
 | `equals(Object obj)`                      | Compares this string to the specified object; returns true if they have the same content.               |
 | `startsWith(String prefix)`               | Tests if this string starts with the specified prefix.                                                  |
-| `endsWith(String suffix)`                 | Tests if this string ends with the specified suffix.                                                    |
+| `endsWith(String suffix)`                 | Tests if this string ends with the specified suffix                                                     |
 | `indexOf(String str)`                     | Returns the index of the first occurrence of the specified substring, or -1 if not found.               |
 | `isEmpty()`                               | Returns true if, and only if, this string’s length is 0.                                                |
 | `toLowerCase()`                           | Converts all of the characters in this string to lower case (using the default locale).                 |
