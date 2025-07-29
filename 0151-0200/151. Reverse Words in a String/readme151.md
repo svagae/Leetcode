@@ -105,7 +105,7 @@ class Solution {
 
 ## 🔁 Dry Run Example
 
-### Input:
+### Input
 
 ```
 "  the   sky is  blue  "
