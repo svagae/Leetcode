@@ -4,7 +4,7 @@ Bit manipulation involves treating integers as arrays of bits and using bitwise 
 
 ---
 
-## 📌 Subset Generation Using Bitmasks
+## 📌 Subset Generation Using Bitmask
 
 Every subset of an n-element set can be represented by an n-bit binary number (a bitmask) from 0 to 2ⁿ−1, where bit j indicates inclusion of the j-th element. To generate the power set, loop mask from 0 to (1<\<n)-1, and for each bit j check `(mask & (1<<j)) != 0` to include element j. This iterates all subsets in O(2ⁿ·n) time. For example, mask 5 (binary 101) selects elements 0 and 2. This method naturally handles sorted ordering of bits. When duplicates exist in the input, one can generate all bitmasks and then use a set to filter unique subsets.
 
@@ -45,7 +45,7 @@ The XOR operator (`^`) has useful properties: `X^X = 0` and `X^0 = X`, and it is
 
 **Example Problem (Single Number):**
 Every element appears twice except one. Find the unique element.
-**Solution:** Iterate and XOR. This runs in O(n) time and O(1) space.
+**Solution:** Iterate and XOR. This runs in O(n) time and O(1) space
 
 ```java
 public int singleNumber(int[] nums) {
@@ -66,9 +66,9 @@ By XOR-ing all elements, pairs cancel (`X^X=0`), leaving the single element. Thi
 
 Bit masks allow selective manipulation of bits:
 
-* **Set bit k to 1:** `n | (1 << k)` (OR with a mask having only bit k set).
-* **Clear bit k to 0:** `n & ~(1 << k)` (AND with the complement of mask).
-* **Toggle (flip) bit k:** `n ^ (1 << k)` (XOR with mask flips that bit).
+* **Set bit k to 1:** `n | (1 << k)` (OR with a mask having only bit k set)
+* **Clear bit k to 0:** `n & ~(1 << k)` (AND with the complement of mask)
+* **Toggle (flip) bit k:** `n ^ (1 << k)` (XOR with mask flips that bit)
 
 Toggling is especially useful: for example, swapping two bits in an integer can be done using XOR. If the bits at positions i and j differ, XORing with `((1<<i)|(1<<j))` will swap them.
 
