@@ -89,7 +89,7 @@ A few crucial insights make backtracking efficient for combination problems:
 
 As one guide summarizes: “The base case for the recursion is if the target is 0. When the target is 0, we append a copy of the current combination to the result list. Then \[we] iterate through the candidates starting from the given index. If the candidate is greater than the remaining target, we skip it; if it is smaller, we add it, recurse, and then backtrack by removing it from the combination”. This pattern embodies the core backtracking logic for combination-sum problems.
 
-## Best Practices and Optimizations
+## Best Practices and Optimization
 
 To write effective backtracking solutions for combinations, keep these tips in mind:
 
@@ -100,7 +100,7 @@ To write effective backtracking solutions for combinations, keep these tips in m
 * **Prune Early:** In addition to sorting, include an explicit check `if (target < 0) return;` in your function.  This terminates branches as soon as they become invalid.
 * **Handle Duplicates (if needed):** If the input array can contain duplicates and you need unique combinations (e.g. Combination Sum II), you can skip over equal adjacent candidates in the loop (`if (i > start && candidates[i] == candidates[i-1]) continue;`).  In the classic Combination Sum I (distinct input), this isn’t needed, but it’s a common technique for similar problems.
 * **Limit Scope of Change:** Inside the loop, only modify the combination list (`comb.add(...)` and `.remove(...)`) and the remaining target. Do not modify the original array or global state. After backtracking, the state should be exactly as it was before the choice.
-* **Iterative vs Recursive:** Although backtracking is inherently recursive, you can think of it as a DFS through an implicit tree of decisions. Writing it recursively is simplest, but if recursion depth is a concern, an explicit stack can simulate the same process.
+* **Iterative vs Recursive:** Although backtracking is inherently recursive, you can think of it as a DFS through an implicit tree of decisions. Writing it recursively is simplest, but if recursion depth is a concern, an explicit stack can simulate the same process
 
 By following this pattern and using these optimizations, backtracking solutions become both clear and efficient. They explore the search space in a disciplined way, pruning impossible branches and avoiding duplicate work. In competitive programming, this means you can handle reasonably large inputs (subject to exponential complexity) with clear, concise code.
 
